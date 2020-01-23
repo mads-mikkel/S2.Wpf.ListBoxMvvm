@@ -12,6 +12,8 @@ namespace S2.Wpf.ListBoxMvvm
         public ViewModel()
         {
             repository = new Repository();
+            List<Employee> employees = repository.GetAll();
+            Employees = new ObservableCollection<Employee>(employees);
         }
 
         public ObservableCollection<Employee> Employees { get; set; }
