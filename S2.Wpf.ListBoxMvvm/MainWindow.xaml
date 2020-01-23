@@ -9,7 +9,8 @@
     <Grid>
         <ListBox x:Name="listBox"
                  Margin="10,10,346,10" 
-                 ItemsSource="{Binding Employees}"/>
+                 ItemsSource="{Binding Employees}"
+                 DisplayMemberPath="Fullname"/>
 
     </Grid>
 </Window>
