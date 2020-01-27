@@ -10,7 +10,15 @@
         <ListBox x:Name="listBox"
                  Margin="10,10,346,10" 
                  ItemsSource="{Binding Employees}"
-                 DisplayMemberPath="Fullname"/>
+                 SelectedItem="{Binding SelectedEmployee}"
+                 DisplayMemberPath="Fullname" />
+        <TextBlock x:Name="textBlock"
+                   HorizontalAlignment="Left"
+                   Margin="178,10,0,0"
+                   Text="{Binding SelectedEmployee.Firstname}"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top" />
+
 
     </Grid>
 </Window>

@@ -17,5 +17,7 @@ namespace S2.Wpf.ListBoxMvvm
         }
 
         public ObservableCollection<Employee> Employees { get; set; }
+
+        public Employee SelectedEmployee { get; set; }
     }
 }
