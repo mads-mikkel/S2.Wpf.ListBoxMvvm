@@ -5,20 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S2.Wpf.ListBoxMvvm"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="500">
+        Title="MainWindow"
+        Height="300"
+        Width="500">
     <Grid>
         <ListBox x:Name="listBox"
-                 Margin="10,10,346,10" 
+                 Margin="10,10,346,10"
                  ItemsSource="{Binding Employees}"
                  SelectedItem="{Binding SelectedEmployee}"
                  DisplayMemberPath="Fullname" />
         <TextBlock x:Name="textBlock"
                    HorizontalAlignment="Left"
-                   Margin="178,10,0,0"
+                   Margin="234,20,0,0"
                    Text="{Binding SelectedEmployee.Firstname}"
                    TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Width="87" />
+        <TextBlock x:Name="textBlock1"
+                   HorizontalAlignment="Left"
+                   Margin="180,20,0,0"
+                   Text="Fornavn:"
+                   TextWrapping="Wrap"
                    VerticalAlignment="Top" />
-
-
     </Grid>
 </Window>
