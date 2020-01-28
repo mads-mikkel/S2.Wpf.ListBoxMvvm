@@ -32,11 +32,13 @@ namespace S2.Wpf.ListBoxMvvm
             controlsWithToggleableBorders = new List<Control>() { textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate };
             RemoveBorderAround(controlsWithToggleableBorders);
             Disable(buttonSave, buttonEdit);
+            ToggleReadonlyFor(true, textBoxFirstname, textBoxLastname, textBoxYearlySalary);
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Disable(buttonSave);
+            ToggleReadonlyFor(true, textBoxFirstname, textBoxLastname, textBoxYearlySalary);
         }
 
         private void Enable(params Control[] controls)
@@ -45,7 +47,7 @@ namespace S2.Wpf.ListBoxMvvm
             {
                 foreach(Control control in controls)
                 {
-                    control.IsEnabled = true;
+                    control.IsEnabled = true;                    
                 }
             }
         }
@@ -108,6 +110,7 @@ namespace S2.Wpf.ListBoxMvvm
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
             EnableBorderAround(controlsWithToggleableBorders);
+            ToggleReadonlyFor(false, textBoxFirstname, textBoxLastname, textBoxYearlySalary);
             Enable(buttonSave);
         }
 
@@ -116,6 +119,7 @@ namespace S2.Wpf.ListBoxMvvm
             listBox.UnselectAll();
             Clear(textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate);
             EnableBorderAround(controlsWithToggleableBorders);
+            ToggleReadonlyFor(false, textBoxFirstname, textBoxLastname, textBoxYearlySalary);
             Enable(buttonSave);
             Disable(buttonEdit);
         }
@@ -136,6 +140,24 @@ namespace S2.Wpf.ListBoxMvvm
             else
             {
                 Clear(textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate);
+            }
+        }
+
+        private void ToggleReadonlyFor(bool isReadonly, params Control[] controls)
+        {
+            if(controls.Count() > 0)
+            {
+                foreach(Control control in controls)
+                {
+                    if(control is TextBox textBox)
+                    {
+                        textBox.IsReadOnly = isReadonly;
+                    }
+                    else if(control is DatePicker datePicker)
+                    {
+                        // TODO: figure how to make a date picker "readonly".
+                    }
+                }
             }
         }
     }
