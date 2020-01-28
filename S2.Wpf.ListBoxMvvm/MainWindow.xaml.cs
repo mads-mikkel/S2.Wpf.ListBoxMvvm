@@ -117,5 +117,26 @@ namespace S2.Wpf.ListBoxMvvm
             Enable(buttonSave);
             Disable(buttonEdit);
         }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            string firstnameInput = textBoxFirstname.Text;
+            string lastnameInput = textBoxFirstname.Text;
+            DateTime? hireDateInput = datePickerHireDate.SelectedDate;
+            string yearlySalaryInput = textBoxYearlySalary.Text;
+
+            
+
+            (bool isValid, string message) validationResult = viewModel.TryAddEmployee(firstnameInput, lastnameInput, hireDateInput, yearlySalaryInput);
+            if(!validationResult.isValid)
+            {
+                MessageBox.Show(validationResult.message, "Input fejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            else
+            {
+
+            }
+        }
     }
 }

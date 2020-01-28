@@ -72,7 +72,8 @@
                 Margin="367,156,0,0"
                 VerticalAlignment="Top"
                 Width="25"
-                Height="25">
+                Height="25"
+                Click="ButtonSave_Click">
             <Grid>
                 <Image Source="icons8-checkmark-50.png"
                        Height="21"
