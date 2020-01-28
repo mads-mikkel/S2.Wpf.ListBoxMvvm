@@ -8,7 +8,7 @@
         Title="MainWindow"
         Height="300"
         Width="500">
-    <ed icons>
+    <Grid>
         <ListBox x:Name="listBox"
                  Margin="10,10,346,10"
                  ItemsSource="{Binding Employees}"
@@ -101,5 +101,5 @@
                 <Image Source="icons8-edit-50.png" />
             </Grid>
         </Button>
-    </ed>
+    </Grid>
 </Window>

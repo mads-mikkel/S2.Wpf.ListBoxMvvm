@@ -34,7 +34,29 @@ namespace S2.Wpf.ListBoxMvvm
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            Disable(buttonSave);
+        }
+
+        private void Enable(params Control[] controls)
+        {
+            if(controls.Count() > 0)
+            {
+                foreach(Control control in controls)
+                {
+                    control.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Disable(params Control[] controls)
+        {
+            if(controls.Count() > 0)
+            {
+                foreach(Control control in controls)
+                {
+                    control.IsEnabled = false;
+                }
+            }
         }
 
         private void RemoveBorderAround(List<Control> controls)
@@ -67,11 +89,13 @@ namespace S2.Wpf.ListBoxMvvm
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
             EnableBorderAround(controlsWithToggleableBorders);
+            Enable(buttonSave);
         }
 
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
             EnableBorderAround(controlsWithToggleableBorders);
+            Enable(buttonSave);
         }
     }
 }
