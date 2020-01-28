@@ -28,9 +28,9 @@ namespace S2.Wpf.ListBoxMvvm
             {
                 return (false, $"Kan ikke konvertere {yearlySalaryInput} til et beløb");
             }
-            else if(String.IsNullOrWhiteSpace(firstnameInput) || String.IsNullOrWhiteSpace(lastnameInput))
+            else if(String.IsNullOrWhiteSpace(firstnameInput) || String.IsNullOrWhiteSpace(lastnameInput) || String.IsNullOrWhiteSpace(yearlySalaryInput))
             {
-                return (false, $"Et navn må ikke være tomt.");
+                return (false, $"Et felt må ikke være tomt.");
             }
             else if(hireDateInput.HasValue)
             {
@@ -49,7 +49,18 @@ namespace S2.Wpf.ListBoxMvvm
 
             Employee employee = new Employee() { Firstname = firstnameInput, Lastname = lastnameInput, HireDate = hireDate, YearlySalary = yearlySalary };
             repository.Add(employee);
+            Update();
             return (true, String.Empty);
+        }
+
+        public void Update()
+        {
+            Employees.Clear();
+            List<Employee> employees = repository.GetAll();
+            foreach(Employee employee in employees)
+            {
+                Employees.Add(employee);
+            }
         }
     }
 }

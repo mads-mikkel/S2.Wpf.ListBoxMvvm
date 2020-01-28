@@ -30,6 +30,7 @@ namespace S2.Wpf.ListBoxMvvm
             DataContext = viewModel;
 
             controlsWithToggleableBorders = new List<Control>() { textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate };
+            RemoveBorderAround(controlsWithToggleableBorders);
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -121,11 +122,9 @@ namespace S2.Wpf.ListBoxMvvm
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             string firstnameInput = textBoxFirstname.Text;
-            string lastnameInput = textBoxFirstname.Text;
+            string lastnameInput = textBoxLastname.Text;
             DateTime? hireDateInput = datePickerHireDate.SelectedDate;
             string yearlySalaryInput = textBoxYearlySalary.Text;
-
-            
 
             (bool isValid, string message) validationResult = viewModel.TryAddEmployee(firstnameInput, lastnameInput, hireDateInput, yearlySalaryInput);
             if(!validationResult.isValid)
@@ -135,7 +134,7 @@ namespace S2.Wpf.ListBoxMvvm
             }
             else
             {
-
+                Clear(textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate);
             }
         }
     }
