@@ -81,9 +81,26 @@ namespace S2.Wpf.ListBoxMvvm
             }
         }
 
+        private void Clear(params Control[] controls)
+        {
+            foreach(Control control in controls)
+            {
+                if(control is TextBox textBox)
+                {
+                    textBox.Text = String.Empty;
+                }
+                else if(control is DatePicker datePicker)
+                {
+                    datePicker.SelectedDate = DateTime.Now.Date;
+                }
+            }
+        }
+
         private void ListBox_GotFocus(object sender, RoutedEventArgs e)
         {
             RemoveBorderAround(controlsWithToggleableBorders);
+            Enable(buttonEdit);
+            Disable(buttonSave);
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
@@ -94,8 +111,11 @@ namespace S2.Wpf.ListBoxMvvm
 
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
+            listBox.UnselectAll();
+            Clear(textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate);
             EnableBorderAround(controlsWithToggleableBorders);
             Enable(buttonSave);
+            Disable(buttonEdit);
         }
     }
 }
