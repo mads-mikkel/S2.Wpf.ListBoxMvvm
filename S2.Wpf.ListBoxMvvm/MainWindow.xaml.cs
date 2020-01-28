@@ -21,12 +21,57 @@ namespace S2.Wpf.ListBoxMvvm
     public partial class MainWindow: Window
     {
         private ViewModel viewModel;
+        private List<Control> controlsWithToggleableBorders;
 
         public MainWindow()
         {
             InitializeComponent();
             viewModel = new ViewModel();
             DataContext = viewModel;
+
+            controlsWithToggleableBorders = new List<Control>() { textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate };
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void RemoveBorderAround(List<Control> controls)
+        {
+            if(controls.Count() > 0)
+            {
+                foreach(Control control in controls)
+                {
+                    control.BorderThickness = new Thickness(0);
+                }
+            }
+        }
+
+        private void EnableBorderAround(List<Control> controls)
+        {
+            if(controls.Count() > 0)
+            {
+                foreach(Control control in controls)
+                {
+                    control.BorderThickness = new Thickness(1);
+                }
+            }
+        }
+
+        private void ListBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RemoveBorderAround(controlsWithToggleableBorders);
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            EnableBorderAround(controlsWithToggleableBorders);
+        }
+
+        private void ButtonNew_Click(object sender, RoutedEventArgs e)
+        {
+            EnableBorderAround(controlsWithToggleableBorders);
         }
     }
 }
