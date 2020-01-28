@@ -77,7 +77,19 @@
             <Grid>
                 <Image Source="icons8-checkmark-50.png"
                        Height="21"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.5" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
             </Grid>
         </Button>
         <Button x:Name="buttonNew"
@@ -99,7 +111,19 @@
                 Height="25"
                 Click="ButtonEdit_Click">
             <Grid>
-                <Image Source="icons8-edit-50.png" />
+                <Image Source="icons8-edit-50.png">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.5" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
             </Grid>
         </Button>
     </Grid>
