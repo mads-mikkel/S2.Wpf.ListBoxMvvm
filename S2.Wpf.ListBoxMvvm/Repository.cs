@@ -25,5 +25,10 @@ namespace S2.Wpf.ListBoxMvvm
         {
             employees.Add(employee);
         }
+
+        internal void Update(Employee selectedEmployee)
+        {
+            
+        }
     }
 }

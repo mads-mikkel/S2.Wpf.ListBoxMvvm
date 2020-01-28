@@ -22,12 +22,15 @@ namespace S2.Wpf.ListBoxMvvm
     {
         private ViewModel viewModel;
         private List<Control> controlsWithToggleableBorders;
+        private bool isEditing;
+        private bool isAdding;
 
         public MainWindow()
         {
             InitializeComponent();
             viewModel = new ViewModel();
             DataContext = viewModel;
+            isEditing = isAdding = false;
 
             controlsWithToggleableBorders = new List<Control>() { textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate };
             RemoveBorderAround(controlsWithToggleableBorders);
@@ -47,7 +50,7 @@ namespace S2.Wpf.ListBoxMvvm
             {
                 foreach(Control control in controls)
                 {
-                    control.IsEnabled = true;                    
+                    control.IsEnabled = true;
                 }
             }
         }
@@ -112,6 +115,8 @@ namespace S2.Wpf.ListBoxMvvm
             EnableBorderAround(controlsWithToggleableBorders);
             ToggleReadonlyFor(false, textBoxFirstname, textBoxLastname, textBoxYearlySalary);
             Enable(buttonSave);
+            isEditing = true;
+            isAdding = false;
         }
 
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
@@ -122,6 +127,8 @@ namespace S2.Wpf.ListBoxMvvm
             ToggleReadonlyFor(false, textBoxFirstname, textBoxLastname, textBoxYearlySalary);
             Enable(buttonSave);
             Disable(buttonEdit);
+            isAdding = true;
+            isEditing = false;
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -131,15 +138,27 @@ namespace S2.Wpf.ListBoxMvvm
             DateTime? hireDateInput = datePickerHireDate.SelectedDate;
             string yearlySalaryInput = textBoxYearlySalary.Text;
 
-            (bool isValid, string message) validationResult = viewModel.TryAddEmployee(firstnameInput, lastnameInput, hireDateInput, yearlySalaryInput);
-            if(!validationResult.isValid)
+            if(isAdding && !isEditing)
             {
-                MessageBox.Show(validationResult.message, "Input fejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
+                (bool isValid, string message) validationResult = viewModel.TryAddEmployee(firstnameInput, lastnameInput, hireDateInput, yearlySalaryInput);
+                if(!validationResult.isValid)
+                {
+                    MessageBox.Show(validationResult.message, "Input fejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+                else
+                {
+                    Clear(textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate);
+                }
             }
-            else
+            else if(isEditing && !isAdding)
             {
-                Clear(textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate);
+                (bool isValid, string message) validationResult = viewModel.TryEditEmployee(firstnameInput, lastnameInput, hireDateInput, yearlySalaryInput);
+                if(!validationResult.isValid)
+                {
+                    MessageBox.Show(validationResult.message, "Input fejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
             }
         }
 

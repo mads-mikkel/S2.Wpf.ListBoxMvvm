@@ -19,7 +19,7 @@
         <TextBox x:Name="textBoxFirstname"
                  HorizontalAlignment="Left"
                  Margin="280,41,0,0"
-                 Text="{Binding SelectedEmployee.Firstname}"
+                 Text="{Binding SelectedEmployee.Firstname, Mode=OneWay}"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Width="112" />
@@ -32,7 +32,7 @@
         <TextBox x:Name="textBoxLastname"
                  HorizontalAlignment="Left"
                  Margin="280,67,0,0"
-                 Text="{Binding SelectedEmployee.Lastname}"
+                 Text="{Binding SelectedEmployee.Lastname, Mode=OneWay}"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Width="112" />
@@ -45,7 +45,7 @@
         <DatePicker x:Name="datePickerHireDate"
                     HorizontalAlignment="Left"
                     Margin="280,94,0,0"
-                    SelectedDate="{Binding SelectedEmployee.HireDate}"
+                    SelectedDate="{Binding SelectedEmployee.HireDate, Mode=OneWay}"
                     VerticalAlignment="Top"
                     Width="112" />
         <TextBlock x:Name="textBlock1_Copy1"
@@ -57,7 +57,7 @@
         <TextBox x:Name="textBoxYearlySalary"
                  HorizontalAlignment="Left"
                  Margin="280,125,0,0"
-                 Text="{Binding SelectedEmployee.YearlySalary}"
+                 Text="{Binding SelectedEmployee.YearlySalary, Mode=OneWay}"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Width="112" />
