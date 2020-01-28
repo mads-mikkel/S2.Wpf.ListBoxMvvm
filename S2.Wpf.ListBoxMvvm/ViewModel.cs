@@ -24,13 +24,13 @@ namespace S2.Wpf.ListBoxMvvm
         {
             DateTime hireDate;
             bool canParseYearlySalary = Decimal.TryParse(yearlySalaryInput, out decimal yearlySalary);
-            if(!canParseYearlySalary)
-            {
-                return (false, $"Kan ikke konvertere {yearlySalaryInput} til et beløb");
-            }
-            else if(String.IsNullOrWhiteSpace(firstnameInput) || String.IsNullOrWhiteSpace(lastnameInput) || String.IsNullOrWhiteSpace(yearlySalaryInput))
+            if(String.IsNullOrWhiteSpace(firstnameInput) || String.IsNullOrWhiteSpace(lastnameInput) || String.IsNullOrWhiteSpace(yearlySalaryInput))
             {
                 return (false, $"Et felt må ikke være tomt.");
+            }
+            else if(!canParseYearlySalary)
+            {
+                return (false, $"Kan ikke konvertere {yearlySalaryInput} til et beløb");
             }
             else if(hireDateInput.HasValue)
             {

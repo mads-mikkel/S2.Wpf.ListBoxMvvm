@@ -31,6 +31,7 @@ namespace S2.Wpf.ListBoxMvvm
 
             controlsWithToggleableBorders = new List<Control>() { textBoxFirstname, textBoxLastname, textBoxYearlySalary, datePickerHireDate };
             RemoveBorderAround(controlsWithToggleableBorders);
+            Disable(buttonSave, buttonEdit);
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
