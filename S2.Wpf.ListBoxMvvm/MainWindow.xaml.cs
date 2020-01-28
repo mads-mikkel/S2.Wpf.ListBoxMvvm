@@ -159,6 +159,7 @@ namespace S2.Wpf.ListBoxMvvm
                     MessageBox.Show(validationResult.message, "Input fejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
+                Disable(buttonEdit);
             }
         }
 
